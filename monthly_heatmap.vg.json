@@ -1,0 +1,97 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Monthly Ridership Patterns by Service (2022–2025)",
+    "subtitle": "Average daily ridership for each service, by month — darker shades indicate higher ridership",
+    "fontSize": 16,
+    "subtitleFontSize": 12,
+    "subtitleColor": "#666"
+  },
+  "width": 600,
+  "height": 400,
+  "data": {
+    "url": "ridership_headline.csv"
+  },
+  "transform": [
+    {"filter": "year(datum.date) >= 2022 && year(datum.date) <= 2025"},
+    {
+      "fold": [
+        "bus_rkl", "bus_rkn", "bus_rpn",
+        "rail_lrt_ampang", "rail_lrt_kj", "rail_monorail",
+        "rail_mrt_kajang", "rail_mrt_pjy",
+        "rail_ets", "rail_intercity",
+        "rail_komuter", "rail_komuter_utara", "rail_tebrau"
+      ],
+      "as": ["service", "ridership"]
+    },
+    {
+        "lookup": "service",
+        "from": {
+            "data": {
+            "values": [
+                {"service": "bus_rkl", "label": "Rapid KL Bus"},
+                {"service": "bus_rkn", "label": "Rapid Kuantan Bus"},
+                {"service": "bus_rpn", "label": "Rapid Penang Bus"},
+                {"service": "rail_lrt_ampang", "label": "LRT Ampang Line"},
+                {"service": "rail_lrt_kj", "label": "LRT Kelana Jaya Line"},
+                {"service": "rail_monorail", "label": "KL Monorail"},
+                {"service": "rail_mrt_kajang", "label": "MRT Kajang Line"},
+                {"service": "rail_mrt_pjy", "label": "MRT Putrajaya Line"},
+                {"service": "rail_ets", "label": "ETS"},
+                {"service": "rail_intercity", "label": "Intercity Rail"},
+                {"service": "rail_komuter", "label": "KTM Komuter"},
+                {"service": "rail_komuter_utara", "label": "Komuter Utara"},
+                {"service": "rail_tebrau", "label": "Shuttle Tebrau"}
+            ]
+            },
+            "key": "service",
+            "fields": ["label"]
+        },
+        "as": "service_label"
+    },
+    {"filter": "datum.ridership != null && datum.ridership > 0"}
+  ],
+  "mark": {"type": "rect"},
+  "encoding": {
+    "x": {
+      "field": "date",
+      "type": "ordinal",
+      "timeUnit": "month",
+      "title": "Month",
+      "axis": {"labelAngle": 0}
+    },
+    "y": {
+      "field": "service_label",
+      "type": "nominal",
+      "title": null,
+      "sort": [
+        "MRT Kajang Line",
+        "LRT Kelana Jaya Line",
+        "Rapid KL Bus",
+        "LRT Ampang Line",
+        "MRT Putrajaya Line",
+        "KL Monorail",
+        "Rapid Penang Bus",
+        "KTM Komuter",
+        "Komuter Utara",
+        "ETS",
+        "Shuttle Tebrau",
+        "Intercity Rail",
+        "Rapid Kuantan Bus"
+        ]
+    },
+    "color": {
+      "field": "ridership",
+      "type": "quantitative",
+      "aggregate": "mean",
+      "title": "Avg daily trips",
+      "scale": {"scheme": "purples"},
+      "legend": {"format": "~s"}
+    },
+    "tooltip": [
+      {"field": "service", "type": "nominal", "title": "Service"},
+      {"field": "date", "type": "temporal", "timeUnit": "month", "title": "Month", "format": "%B"},
+      {"field": "ridership", "type": "quantitative", "aggregate": "mean", "title": "Avg daily trips", "format": ",.0f"}
+    ]
+  }
+}

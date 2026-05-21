@@ -1,0 +1,48 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Top Public Transport Services by Daily Ridership (2025)",
+    "subtitle": "Average daily trips across all 13 major services in Peninsular Malaysia",
+    "fontSize": 16,
+    "subtitleFontSize": 12,
+    "subtitleColor": "#666"
+  },
+  "width": 500,
+  "height": 400,
+  "data": {
+    "url": "ridership_by_service_2025.csv"
+  },
+  "mark": {
+    "type": "bar",
+    "cornerRadiusEnd": 2
+  },
+  "encoding": {
+    "y": {
+      "field": "service",
+      "type": "nominal",
+      "sort": "-x",
+      "title": null,
+      "axis": {"labelFontSize": 11}
+    },
+    "x": {
+      "field": "daily_ridership",
+      "type": "quantitative",
+      "title": "Average daily trips",
+      "axis": {"format": ",.0f"}
+    },
+    "color": {
+      "field": "category",
+      "type": "nominal",
+      "scale": {
+        "domain": ["Klang Valley", "Penang", "Pahang", "Johor", "Cross-state"],
+        "range": ["#6a51a3", "#b565a9", "#7371f5", "#d9e368", "#999999"]
+      },
+      "legend": {"title": "Region"}
+    },
+    "tooltip": [
+      {"field": "service", "type": "nominal", "title": "Service"},
+      {"field": "daily_ridership", "type": "quantitative", "title": "Daily ridership", "format": ","},
+      {"field": "category", "type": "nominal", "title": "Region"}
+    ]
+  }
+}

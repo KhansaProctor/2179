@@ -1,0 +1,48 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Regional Share of Daily Public Transport Trips (2025)",
+    "subtitle": "Klang Valley dominates with over 90% of all trips",
+    "fontSize": 16,
+    "subtitleFontSize": 12,
+    "subtitleColor": "#666"
+  },
+  "width": 400,
+  "height": 400,
+  "data": {
+    "url": "ridership_by_region_2025.csv"
+  },
+  "transform": [
+    {
+      "joinaggregate": [{"op": "sum", "field": "daily_ridership", "as": "total"}]
+    },
+    {
+      "calculate": "datum.daily_ridership / datum.total * 100",
+      "as": "percentage"
+    }
+  ],
+  "mark": {
+    "type": "arc",
+    "innerRadius": 60
+  },
+  "encoding": {
+    "theta": {
+      "field": "daily_ridership",
+      "type": "quantitative"
+    },
+    "color": {
+      "field": "region",
+      "type": "nominal",
+      "scale": {
+        "domain": ["Klang Valley", "Penang", "Cross-state", "Johor", "Pahang"],
+        "range": ["#6a51a3", "#b565a9", "#999999", "#d9e368", "#7371f5"]
+      },
+      "legend": {"title": "Region"}
+    },
+    "tooltip": [
+      {"field": "region", "type": "nominal", "title": "Region"},
+      {"field": "daily_ridership", "type": "quantitative", "title": "Daily trips", "format": ","},
+      {"field": "percentage", "type": "quantitative", "title": "% of total", "format": ".1f"}
+    ]
+  }
+}

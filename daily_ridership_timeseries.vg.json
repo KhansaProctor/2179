@@ -1,0 +1,41 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Daily Public Transport Ridership, 2022–2026",
+    "subtitle": "Monthly average of daily trips across all 13 services in Peninsular Malaysia",
+    "fontSize": 16,
+    "subtitleFontSize": 12,
+    "subtitleColor": "#666"
+  },
+  "width": 700,
+  "height": 350,
+  "data": {
+    "url": "daily_total.csv"
+  },
+  "mark": {
+    "type": "line",
+    "color": "#6a51a3",
+    "strokeWidth": 2,
+    "point": {"filled": true, "size": 30}
+  },
+  "encoding": {
+    "x": {
+      "field": "date",
+      "type": "temporal",
+      "title": "Month",
+      "timeUnit": "yearmonth",
+      "axis": {"format": "%b %Y", "labelAngle": -45}
+    },
+    "y": {
+      "field": "total",
+      "type": "quantitative",
+      "aggregate": "mean",
+      "title": "Average daily trips",
+      "axis": {"format": ",.0f"}
+    },
+    "tooltip": [
+      {"field": "date", "type": "temporal", "title": "Month", "timeUnit": "yearmonth", "format": "%B %Y"},
+      {"field": "total", "type": "quantitative", "aggregate": "mean", "title": "Avg daily trips", "format": ","}
+    ]
+  }
+}

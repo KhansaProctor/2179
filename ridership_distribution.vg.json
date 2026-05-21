@@ -1,0 +1,38 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Distribution of Daily Public Transport Ridership",
+    "subtitle": "How often the network carries different daily passenger volumes (2022–2026)",
+    "fontSize": 16,
+    "subtitleFontSize": 12,
+    "subtitleColor": "#666"
+  },
+  "width": 600,
+  "height": 350,
+  "data": {
+    "url": "daily_total.csv"
+  },
+  "mark": {
+    "type": "bar",
+    "color": "#6a51a3",
+    "opacity": 0.8
+  },
+  "encoding": {
+    "x": {
+      "field": "total",
+      "type": "quantitative",
+      "bin": {"maxbins": 30},
+      "title": "Daily total trips",
+      "axis": {"format": "~s"}
+    },
+    "y": {
+        "aggregate": "count",
+        "type": "quantitative",
+        "title": "Number of days at this ridership level"
+    },
+    "tooltip": [
+      {"field": "total", "type": "quantitative", "bin": {"maxbins": 30}, "title": "Daily trips range"},
+      {"aggregate": "count", "type": "quantitative", "title": "Days"}
+    ]
+  }
+}

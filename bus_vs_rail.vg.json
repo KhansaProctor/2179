@@ -1,0 +1,49 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Bus vs Rail Ridership by Region (2025)",
+    "subtitle": "Klang Valley is rail-dominant; Penang relies heavily on buses",
+    "fontSize": 16,
+    "subtitleFontSize": 12,
+    "subtitleColor": "#666"
+  },
+  "width": 500,
+  "height": 300,
+  "data": {
+    "url": "ridership_by_mode_region.csv"
+  },
+  "mark": {
+    "type": "bar"
+  },
+  "encoding": {
+    "y": {
+      "field": "region",
+      "type": "nominal",
+      "title": null,
+      "sort": [
+        "Klang Valley", "Penang", "Johor", "Pahang"
+      ],
+      "axis": {"labelFontSize": 12}
+    },
+    "x": {
+      "field": "daily_ridership",
+      "type": "quantitative",
+      "title": "Average daily trips",
+      "axis": {"format": "~s"}
+    },
+    "color": {
+      "field": "mode",
+      "type": "nominal",
+      "scale": {
+        "domain": ["Rail", "Bus"],
+        "range": ["#6a51a3", "#b565a9"]
+      },
+      "legend": {"title": "Mode"}
+    },
+    "tooltip": [
+      {"field": "region", "type": "nominal", "title": "Region"},
+      {"field": "mode", "type": "nominal", "title": "Mode"},
+      {"field": "daily_ridership", "type": "quantitative", "title": "Daily trips", "format": ","}
+    ]
+  }
+}

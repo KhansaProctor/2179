@@ -1,0 +1,40 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "Public Transport Trips per 1,000 Residents in Peninsular Malaysia (2025)",
+  "width": 600,
+  "height": 500,
+  "projection": {"type": "mercator", "center": [102, 4], "scale": 2200},
+  "data": {
+    "url": "peninsular_malaysia.topojson",
+    "format": {"type": "topojson", "feature": "gadm41_MYS_1"}
+  },
+  "transform": [
+    {
+      "lookup": "properties.NAME_1",
+      "from": {
+        "data": {"url": "ridership_by_state_2025.csv"},
+        "key": "state",
+        "fields": ["population", "daily_ridership", "trips_per_1000"]
+      }
+    }
+  ],
+  "mark": {"type": "geoshape", "stroke": "white", "strokeWidth": 1},
+  "encoding": {
+    "color": {
+      "field": "trips_per_1000",
+      "type": "quantitative",
+      "title": "Trips per 1,000 residents",
+      "scale": {
+        "type": "threshold",
+        "domain": [1, 10, 50],
+        "range": ["#f2f0f7", "#cbc9e2", "#9e9ac8", "#6a51a3"]
+      }
+    },
+    "tooltip": [
+      {"field": "properties.NAME_1", "type": "nominal", "title": "State"},
+      {"field": "population", "type": "quantitative", "title": "Population (thousands)"},
+      {"field": "daily_ridership", "type": "quantitative", "title": "Daily ridership", "format": ","},
+      {"field": "trips_per_1000", "type": "quantitative", "title": "Trips per 1,000", "format": ".1f"}
+    ]
+  }
+}

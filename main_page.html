@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Beyond the Klang Valley: Public Transport in Peninsular Malaysia</title>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css">
+
+  <!-- Vega-Lite libraries -->
+  <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+
+  <!-- custom styles -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <div class="page">
+
+    <!-- Header -->
+    <header>
+      <h1>Beyond the Klang Valley</h1>
+      <p class="subtitle">Public Transport in Peninsular Malaysia</p>
+      <p class="intro">
+        Malaysia's public transport story is often focused on Kuala Lumpur and the Klang Valleys. This visualisation explores ridership patterns, network coverage, and service frequency across the peninsula, using data from data.gov.my and the Department of Statistics Malaysia.
+      </p>
+    </header>
+
+    <!-- Choropleth -->
+    <section class="chart-block">
+      <h2>Where do Malaysians use public transport?</h2>
+      <p class="chart-caption">
+        Klang Valley dominates with over 100 trips per 1,000 residents per day, while most other states have negligible ridership.
+      </p>
+      <div id="chart1" class="chart"></div>
+    </section>
+
+    <!-- Frequency by hour -->
+    <section class="chart-block">
+      <h2>When do KTM trains run?</h2>
+      <p class="chart-caption">
+        Two clear peaks: a strong morning commute around 7am and a longer evening peak from 5–7pm.
+      </p>
+      <div id="chart2" class="chart"></div>
+    </section>
+
+    <!-- Ridership by service -->
+    <section class="chart-block">
+    <h2>Which services carry the most passengers?</h2>
+    <p class="chart-caption">
+        The top six services are all in the Klang Valley. Outside the Klang Valley, only Rapid Bus Penang exceeds 20,000 daily trips.
+    </p>
+    <div id="chart3" class="chart"></div>
+    </section>
+
+    <!-- Population vs ridership scatter -->
+    <section class="chart-block">
+    <h2>Does ridership match population?</h2>
+    <p class="chart-caption">
+        The Klang Valley's 9.6 million residents take more than 1.1 million public transport trips per day, while Johor with 4.2 million residents records only 8,300 daily trips.
+    </p>
+    <div id="chart4" class="chart"></div>
+    <p class="chart-caption">
+        States with no rail or Rapid Bus service are excluded from this view. Both axes use a logarithmic scale.
+    </p>
+    </section>
+
+    <!-- Time series over years -->
+    <section class="chart-block">
+    <h2>How has ridership grown since 2022?</h2>
+    <p class="chart-caption">
+        Monthly average of daily public transport trips across all 13 services in Peninsular Malaysia. Ridership has a clear step up in early 2023 when the MRT Putrajaya Line opened.
+    </p>
+    <div id="chart5" class="chart"></div>
+    </section>
+
+    <!-- Distribution of daily ridership -->
+    <section class="chart-block">
+    <h2>How does ridership vary day to day?</h2>
+    <p class="chart-caption">
+        Distribution of daily total public transport trips across Peninsular Malaysia from 2022 to 2026. The bimodal pattern reflects weekday vs weekend/public holiday ridership forming two groups of around 1.2–1.4 million trips and around 700k–900k.
+    </p>
+    <div id="chart6" class="chart"></div>
+    </section>
+
+    <!-- Heatmap of monthly patterns -->
+    <section class="chart-block">
+    <h2>Are there seasonal patterns?</h2>
+    <p class="chart-caption">
+        Darker cells mean higher ridership. Outside of Klang Valley, ridership stays consistent. Within Klang Valley, July onwards seems to have higher ridership
+    </p>
+    <div id="chart7" class="chart"></div>
+    </section>
+
+    <!-- Regional share donut -->
+    <section class="chart-block">
+    <h2>How dominant is the Klang Valley?</h2>
+    <p class="chart-caption">
+        The Klang Valley accounts for over 90% of all trips. Penang is the only other region with a visible share, while Johor, Pahang, and cross-state services together contribute less than 3%.
+    </p>
+    <div id="chart8" class="chart"></div>
+    </section>
+
+    <!-- Bus vs rail by region -->
+    <section class="chart-block">
+    <h2>Bus or rail — what moves each region?</h2>
+    <p class="chart-caption">
+        The Klang Valley's public transport is overwhelmingly rail-based, with rail services carrying more than four times the bus ridership. In contrast, Penang relies primarily on its Rapid Bus network.
+    </p>
+    <div id="chart9" class="chart"></div>
+    </section>
+
+    <!-- Weekday vs weekend -->
+    <section class="chart-block">
+    <h2>How does ridership differ on weekdays vs weekends?</h2>
+    <p class="chart-caption">
+        Commuter focused services like LRT and MRT see dramatic drops on weekends, while intercity services like KTM ETS maintain steadier demand.
+    </p>
+    <div id="chart10" class="chart"></div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <p><strong>Author:</strong> Khansa Leena Proctor 36446890</p>
+      <p><strong>Data sources:</strong></p>
+      <ul>
+        <li>Daily Public Transport Ridership — data.gov.my (Prasarana & KTMB via Ministry of Transport)</li>
+        <li>Population Table: States — open.dosm.gov.my (Department of Statistics Malaysia)</li>
+        <li>KTMB GTFS Static feed — api.data.gov.my/gtfs-static/ktmb</li>
+        <li>Malaysian state boundaries — GADM, gadm.org</li>
+      </ul>
+    </footer>
+
+  </div>
+
+  <!-- Embed the Vega-Lite charts -->
+  <script src="vega_lit_vis.js"></script>
+
+</body>
+</html>

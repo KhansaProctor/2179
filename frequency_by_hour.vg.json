@@ -1,0 +1,41 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "KTM Train Frequency Throughout the Day",
+    "subtitle": "Number of scheduled train stops across all KTM stations, by hour",
+    "fontSize": 16,
+    "subtitleFontSize": 12,
+    "subtitleColor": "#666"
+  },
+  "width": 600,
+  "height": 350,
+  "data": {
+    "url": "stops_per_hour.csv"
+  },
+  "mark": {
+    "type": "line",
+    "point": true,
+    "color": "#6a51a3",
+    "strokeWidth": 2
+  },
+  "encoding": {
+    "x": {
+      "field": "hour",
+      "type": "quantitative",
+      "title": "Hour of day (24-hour)",
+      "axis": {
+        "values": [0, 3, 6, 9, 12, 15, 18, 21]
+      },
+      "scale": {"domain": [0, 23]}
+    },
+    "y": {
+      "field": "stops",
+      "type": "quantitative",
+      "title": "Number of scheduled train stops"
+    },
+    "tooltip": [
+      {"field": "hour", "type": "quantitative", "title": "Hour"},
+      {"field": "stops", "type": "quantitative", "title": "Train stops"}
+    ]
+  }
+}
