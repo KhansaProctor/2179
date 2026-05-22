@@ -7,7 +7,7 @@
     "subtitleFontSize": 12,
     "subtitleColor": "#666"
   },
-  "width": 500,
+  "width": 700,
   "height": 400,
   "data": {
     "url": "ridership_by_service_2025.csv"
@@ -35,7 +35,7 @@
       "type": "nominal",
       "scale": {
         "domain": ["Klang Valley", "Penang", "Pahang", "Johor", "Cross-state"],
-        "range": ["#6a51a3", "#b565a9", "#7371f5", "#d9e368", "#999999"]
+        "range": ["#f54433", "#b565a9", "#7371f5", "#d9e368", "#999999"]
       },
       "legend": {"title": "Region"}
     },

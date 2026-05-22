@@ -7,7 +7,7 @@
     "subtitleFontSize": 12,
     "subtitleColor": "#666"
   },
-  "width": 500,
+  "width": 700,
   "height": 300,
   "data": {
     "url": "ridership_by_mode_region.csv"
@@ -36,7 +36,7 @@
       "type": "nominal",
       "scale": {
         "domain": ["Rail", "Bus"],
-        "range": ["#6a51a3", "#b565a9"]
+        "range": ["#dbd874", "#b565a9"]
       },
       "legend": {"title": "Mode"}
     },

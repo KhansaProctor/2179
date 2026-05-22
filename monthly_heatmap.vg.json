@@ -7,7 +7,7 @@
     "subtitleFontSize": 12,
     "subtitleColor": "#666"
   },
-  "width": 600,
+  "width": 700,
   "height": 400,
   "data": {
     "url": "ridership_headline.csv"

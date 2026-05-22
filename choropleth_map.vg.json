@@ -1,9 +1,9 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": "Public Transport Trips per 1,000 Residents in Peninsular Malaysia (2025)",
-  "width": 600,
+  "width": 700,
   "height": 500,
-  "projection": {"type": "mercator", "center": [102, 4], "scale": 2200},
+  "projection": {"type": "mercator", "center": [102, 4], "scale": 4000},
   "data": {
     "url": "peninsular_malaysia.topojson",
     "format": {"type": "topojson", "feature": "gadm41_MYS_1"}

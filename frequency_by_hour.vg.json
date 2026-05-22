@@ -7,7 +7,7 @@
     "subtitleFontSize": 12,
     "subtitleColor": "#666"
   },
-  "width": 600,
+  "width": 700,
   "height": 350,
   "data": {
     "url": "stops_per_hour.csv"
@@ -15,7 +15,7 @@
   "mark": {
     "type": "line",
     "point": true,
-    "color": "#6a51a3",
+    "color": "#ff0062",
     "strokeWidth": 2
   },
   "encoding": {

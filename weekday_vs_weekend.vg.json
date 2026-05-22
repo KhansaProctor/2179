@@ -7,7 +7,7 @@
     "subtitleFontSize": 12,
     "subtitleColor": "#666"
   },
-  "width": 500,
+  "width": 700,
   "height": 400,
   "data": {
     "url": "ridership_headline.csv"
@@ -91,7 +91,7 @@
       "type": "nominal",
       "scale": {
         "domain": ["Weekday", "Weekend"],
-        "range": ["#6a51a3", "#b565a9"]
+        "range": ["#faa741", "#41a7fa"]
       },
       "legend": {"title": "Day type"}
     },

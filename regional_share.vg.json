@@ -2,12 +2,11 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": {
     "text": "Regional Share of Daily Public Transport Trips (2025)",
-    "subtitle": "Klang Valley dominates with over 90% of all trips",
     "fontSize": 16,
     "subtitleFontSize": 12,
     "subtitleColor": "#666"
   },
-  "width": 400,
+  "width": 700,
   "height": 400,
   "data": {
     "url": "ridership_by_region_2025.csv"
@@ -21,28 +20,61 @@
       "as": "percentage"
     }
   ],
-  "mark": {
-    "type": "arc",
-    "innerRadius": 60
-  },
-  "encoding": {
-    "theta": {
-      "field": "daily_ridership",
-      "type": "quantitative"
-    },
-    "color": {
-      "field": "region",
-      "type": "nominal",
-      "scale": {
-        "domain": ["Klang Valley", "Penang", "Cross-state", "Johor", "Pahang"],
-        "range": ["#6a51a3", "#b565a9", "#999999", "#d9e368", "#7371f5"]
+  "layer": [
+    {
+      "mark": {
+        "type": "arc",
+        "innerRadius": 80,
+        "outerRadius": 160
       },
-      "legend": {"title": "Region"}
+      "encoding": {
+        "theta": {
+          "field": "daily_ridership",
+          "type": "quantitative"
+        },
+        "color": {
+          "field": "region",
+          "type": "nominal",
+          "scale": {
+            "domain": ["Klang Valley", "Penang", "Cross-state", "Johor", "Pahang"],
+            "range": ["#e05cb0", "#9e63cf", "#999999", "#c9cf63", "#6379cf"]
+          },
+          "legend": {"title": "Region"}
+        },
+        "tooltip": [
+          {"field": "region", "type": "nominal", "title": "Region"},
+          {"field": "daily_ridership", "type": "quantitative", "title": "Daily trips", "format": ","},
+          {"field": "percentage", "type": "quantitative", "title": "% of total", "format": ".1f"}
+        ]
+      }
     },
-    "tooltip": [
-      {"field": "region", "type": "nominal", "title": "Region"},
-      {"field": "daily_ridership", "type": "quantitative", "title": "Daily trips", "format": ","},
-      {"field": "percentage", "type": "quantitative", "title": "% of total", "format": ".1f"}
-    ]
-  }
+    {
+      "mark": {
+        "type": "text",
+        "fontSize": 28,
+        "fontWeight": "bold",
+        "color": "#e05cb0"
+      },
+      "data": {
+        "values": [{"text": "93%"}]
+      },
+      "encoding": {
+        "text": {"field": "text", "type": "nominal"}
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "fontSize": 13,
+        "color": "#666",
+        "dy": 25
+      },
+      "data": {
+        "values": [{"text": "Klang Valley"}]
+      },
+      "encoding": {
+        "text": {"field": "text", "type": "nominal"}
+      }
+    }
+  ]
 }

@@ -12,30 +12,72 @@
   "data": {
     "url": "daily_total.csv"
   },
-  "mark": {
-    "type": "line",
-    "color": "#6a51a3",
-    "strokeWidth": 2,
-    "point": {"filled": true, "size": 30}
-  },
-  "encoding": {
-    "x": {
-      "field": "date",
-      "type": "temporal",
-      "title": "Month",
-      "timeUnit": "yearmonth",
-      "axis": {"format": "%b %Y", "labelAngle": -45}
+  "layer": [
+    {
+      "mark": {
+        "type": "line",
+        "color": "#fc25dc",
+        "strokeWidth": 2
+      },
+      "encoding": {
+        "x": {
+          "field": "date",
+          "type": "temporal",
+          "timeUnit": "yearmonth",
+          "title": "Month",
+          "axis": {"format": "%b %Y", "labelAngle": -45}
+        },
+        "y": {
+          "field": "total",
+          "type": "quantitative",
+          "aggregate": "mean",
+          "title": "Average daily trips",
+          "axis": {"format": "~s"}
+        },
+        "tooltip": [
+          {"field": "date", "type": "temporal", "title": "Month", "timeUnit": "yearmonth", "format": "%B %Y"},
+          {"field": "total", "type": "quantitative", "aggregate": "mean", "title": "Avg daily trips", "format": ","}
+        ]
+      }
     },
-    "y": {
-      "field": "total",
-      "type": "quantitative",
-      "aggregate": "mean",
-      "title": "Average daily trips",
-      "axis": {"format": ",.0f"}
+    {
+      "mark": {
+        "type": "rule",
+        "color": "#e41a1c",
+        "strokeWidth": 1.5,
+        "strokeDash": [4, 4]
+      },
+      "data": {
+        "values": [{"date": "2023-03-16"}]
+      },
+      "encoding": {
+        "x": {
+          "field": "date",
+          "type": "temporal"
+        }
+      }
     },
-    "tooltip": [
-      {"field": "date", "type": "temporal", "title": "Month", "timeUnit": "yearmonth", "format": "%B %Y"},
-      {"field": "total", "type": "quantitative", "aggregate": "mean", "title": "Avg daily trips", "format": ","}
-    ]
-  }
+    {
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 5,
+        "dy": -10,
+        "fontSize": 11,
+        "color": "#e41a1c",
+        "fontStyle": "italic"
+      },
+      "data": {
+        "values": [{"date": "2023-03-16", "label": "MRT Putrajaya opens"}]
+      },
+      "encoding": {
+        "x": {
+          "field": "date",
+          "type": "temporal"
+        },
+        "y": {"value": 50},
+        "text": {"field": "label"}
+      }
+    }
+  ]
 }
